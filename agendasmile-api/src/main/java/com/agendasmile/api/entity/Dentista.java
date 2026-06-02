@@ -72,10 +72,6 @@ public class Dentista {
         return usuario;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -90,10 +86,6 @@ public class Dentista {
 
     public void setCro(String cro) {
         this.cro = cro;
-    }
-
-    public void setDataCriacao(LocalDateTime dataCriacao) {
-        this.dataCriacao = dataCriacao;
     }
 
     public void setAtivo(boolean ativo) {
