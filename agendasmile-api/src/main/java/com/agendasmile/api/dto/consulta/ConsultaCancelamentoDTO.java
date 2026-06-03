@@ -2,6 +2,7 @@ package com.agendasmile.api.dto.consulta;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 public class ConsultaCancelamentoDTO {
 
@@ -9,6 +10,7 @@ public class ConsultaCancelamentoDTO {
     private Long idConsulta;
 
     @NotBlank(message = "Motivo do cancelamento é obrigatório")
+    @Size(min = 10, max = 500, message = "Motivo deve ter entre 10 e 500 caracteres!")
     private String motivoCancelamento;
 
     // Getters e Setters

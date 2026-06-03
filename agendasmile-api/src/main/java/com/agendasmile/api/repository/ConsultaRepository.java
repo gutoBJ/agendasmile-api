@@ -16,6 +16,8 @@ public interface ConsultaRepository extends JpaRepository<Consulta, Long> {
             LocalDateTime dataInicio
     );
 
+    boolean existsByPacienteId(Long idPaciente);
+
     // Regra 6 — dentista vê só suas consultas
     List<Consulta> findAllByDentistaId(Long idDentista);
 

@@ -64,19 +64,19 @@ public class Consulta {
         this.paciente = paciente;
     }
 
-    public Dentista getIdDentista() {
+    public Dentista getDentista() {
         return dentista;
     }
 
-    public void setIdDentista(Dentista dentista) {
+    public void setDentista(Dentista dentista) {
         this.dentista = dentista;
     }
 
-    public Usuario getIdUsuario() {
+    public Usuario getUsuario() {
         return usuario;
     }
 
-    public void setIdUsuario(Usuario usuario) {
+    public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
 

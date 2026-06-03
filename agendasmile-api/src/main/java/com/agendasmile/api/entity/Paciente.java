@@ -33,6 +33,9 @@ public class Paciente {
     @Column
     private String telefone;
 
+    @Column(nullable = false)
+    private boolean ativo = true;
+
     public Long getId() {
         return id;
     }
@@ -71,5 +74,13 @@ public class Paciente {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
+    }
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
     }
 }

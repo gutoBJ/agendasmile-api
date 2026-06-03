@@ -14,4 +14,5 @@ public interface EspecialidadeRepository extends JpaRepository<Especialidade, Lo
     // Busca por nome (útil para filtros)
     Optional<Especialidade> findByNome(String nome);
 
+    boolean existsByNomeAndIdNot(String nome, Long id);
 }

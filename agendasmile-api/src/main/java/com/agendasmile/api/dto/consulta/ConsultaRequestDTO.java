@@ -3,6 +3,7 @@ package com.agendasmile.api.dto.consulta;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.time.LocalDateTime;
 
@@ -15,6 +16,7 @@ public class ConsultaRequestDTO {
     private Long idDentista;
 
     @NotBlank(message = "Descrição é obrigatória")
+    @Size(min = 10, max = 500, message = "Descrição deve ter entre 10 e 500 caracteres!")
     private String descricao;
 
     @NotNull(message = "Data de início é obrigatória")

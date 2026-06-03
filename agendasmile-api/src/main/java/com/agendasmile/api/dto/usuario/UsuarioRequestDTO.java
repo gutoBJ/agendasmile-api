@@ -10,6 +10,7 @@ import org.hibernate.validator.constraints.br.CPF;
 public class UsuarioRequestDTO {
 
     @NotBlank(message = "Nome do usuário é obrigatório!")
+    @Size(min = 3, max = 100, message = "Nome deve ter entre 3 e 100 caracteres!")
     private String nome;
 
     @NotBlank(message = "CPF do usuário é obrigatório!")

@@ -18,4 +18,5 @@ public interface DentistaEspecialidadeRepository extends JpaRepository<DentistaE
     // Verifica se já existe o vínculo
     boolean existsByDentistaIdAndEspecialidadeId(Long idDentista, Long idEspecialidade);
 
+    boolean existsByEspecialidadeId(Long idEspecialidade);
 }

@@ -10,6 +10,7 @@ public class PacienteResponseDTO {
     private String email;
     private LocalDateTime dataCriacao;
     private String telefone;
+    private boolean ativo;
 
     public PacienteResponseDTO(
             Long id,
@@ -17,7 +18,8 @@ public class PacienteResponseDTO {
             String cpf,
             String email,
             LocalDateTime dataCriacao,
-            String telefone)
+            String telefone,
+            boolean ativo)
     {
         this.id = id;
         this.nome = nome;
@@ -25,6 +27,7 @@ public class PacienteResponseDTO {
         this.email = email;
         this.dataCriacao = dataCriacao;
         this.telefone = telefone;
+        this.ativo = ativo;
     }
 
     public Long getId() {
@@ -50,4 +53,6 @@ public class PacienteResponseDTO {
     public String getTelefone() {
         return telefone;
     }
+
+    public boolean isAtivo() { return ativo; }
 }
