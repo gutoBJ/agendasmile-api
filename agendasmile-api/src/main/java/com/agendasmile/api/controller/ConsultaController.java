@@ -3,10 +3,12 @@ package com.agendasmile.api.controller;
 import com.agendasmile.api.dto.consulta.ConsultaCancelamentoDTO;
 import com.agendasmile.api.dto.consulta.ConsultaRequestDTO;
 import com.agendasmile.api.dto.consulta.ConsultaResponseDTO;
+import com.agendasmile.api.entity.Usuario;
 import com.agendasmile.api.service.ConsultaService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,9 +26,14 @@ public class ConsultaController {
     @PostMapping
     public ResponseEntity<ConsultaResponseDTO> agendar(
             @RequestBody @Valid ConsultaRequestDTO dto) {
-        // ⚠️ idUsuario virá do token JWT depois!
-        // Por enquanto recebe como parâmetro temporário
-        ConsultaResponseDTO response = consultaService.agendar(dto, 1L);
+
+        // Pega o usuário autenticado do SecurityContext
+        Usuario usuario = (Usuario) SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getPrincipal();
+
+        ConsultaResponseDTO response = consultaService.agendar(dto, usuario.getId());
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
