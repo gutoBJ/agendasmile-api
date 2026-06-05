@@ -37,6 +37,8 @@ public class SecurityConfig {
                         // ✅ Login — público!
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
 
+                        .requestMatchers(HttpMethod.GET, "/usuarios", "/usuarios/**").permitAll()
+
                         // ✅ Regra 5 — só ADMIN gerencia usuários
                         .requestMatchers("/usuarios/**").hasRole("ADMIN")
 
