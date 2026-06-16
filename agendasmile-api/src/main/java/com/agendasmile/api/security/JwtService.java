@@ -25,6 +25,7 @@ public class JwtService {
                 .withSubject(usuario.getEmail())
                 .withClaim("id", usuario.getId())
                 .withClaim("perfil", usuario.getPerfil().name())
+                .withClaim("nome", usuario.getNome())
                 .withExpiresAt(dataExpiracao())
                 .sign(Algorithm.HMAC256(secret));
     }

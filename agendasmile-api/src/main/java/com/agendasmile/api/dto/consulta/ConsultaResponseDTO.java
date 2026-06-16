@@ -8,7 +8,9 @@ public class ConsultaResponseDTO {
 
     private Long id;
     private Long idPaciente;
+    private String nomePaciente;
     private Long idDentista;
+    private String nomeDentista;
     private Long idUsuario;
     private String descricao;
     private String motivoCancelamento;
@@ -21,7 +23,9 @@ public class ConsultaResponseDTO {
     public ConsultaResponseDTO(
             Long id,
             Long idPaciente,
+            String nomePaciente,
             Long idDentista,
+            String nomeDentista,
             Long idUsuario,
             String descricao,
             String motivoCancelamento,
@@ -32,7 +36,9 @@ public class ConsultaResponseDTO {
     ) {
         this.id = id;
         this.idPaciente = idPaciente;
+        this.nomePaciente = nomePaciente;
         this.idDentista = idDentista;
+        this.nomeDentista = nomeDentista;
         this.idUsuario = idUsuario;
         this.descricao = descricao;
         this.motivoCancelamento = motivoCancelamento;
@@ -51,8 +57,14 @@ public class ConsultaResponseDTO {
         return idPaciente;
     }
 
+    public String getNomePaciente() { return nomePaciente; }
+
     public Long getIdDentista() {
         return idDentista;
+    }
+
+    public String getNomeDentista() {
+        return nomeDentista;
     }
 
     public Long getIdUsuario() {

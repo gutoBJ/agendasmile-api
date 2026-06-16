@@ -151,7 +151,9 @@ public class ConsultaService {
         return new ConsultaResponseDTO(
                 consulta.getId(),
                 consulta.getPaciente().getId(),
+                consulta.getPaciente().getNome(),
                 consulta.getDentista().getId(),
+                consulta.getDentista().getNome(),
                 consulta.getUsuario().getId(),
                 consulta.getDescricao(),
                 consulta.getMotivoCancelamento(),
