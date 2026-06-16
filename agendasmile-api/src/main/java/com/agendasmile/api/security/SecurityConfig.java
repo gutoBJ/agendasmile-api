@@ -3,6 +3,7 @@ package com.agendasmile.api.security;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -23,43 +24,56 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+
         return http
-                // Desativa CSRF — API REST não precisa!
+
+                // Habilita CORS
+                .cors(Customizer.withDefaults())
+
+                // Desativa CSRF
                 .csrf(AbstractHttpConfigurer::disable)
 
-                // Sem sessão — API REST é stateless!
+                // API Stateless
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 
-                // Regras de acesso
+                // Regras de autorização
                 .authorizeHttpRequests(auth -> auth
 
-                        // ✅ Login — público!
+                        // Login público
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
 
-                        .requestMatchers(HttpMethod.GET, "/usuarios", "/usuarios/**").permitAll()
+                        // Libera requisições OPTIONS (preflight do CORS)
+                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 
-                        // ✅ Regra 5 — só ADMIN gerencia usuários
+                        // Usuários
+                        .requestMatchers(HttpMethod.GET, "/usuarios", "/usuarios/**").permitAll()
                         .requestMatchers("/usuarios/**").hasRole("ADMIN")
 
-                        // ✅ Regra 5 — só ADMIN gerencia especialidades
+                        // Especialidades
                         .requestMatchers("/especialidades/**").hasRole("ADMIN")
 
-                        // ✅ Pacientes — ADMIN e DENTISTA
-                        .requestMatchers("/pacientes/**").hasAnyRole("ADMIN", "DENTISTA")
+                        // Pacientes
+                        .requestMatchers("/pacientes/**")
+                        .hasAnyRole("ADMIN", "DENTISTA")
 
-                        // ✅ Dentistas — ADMIN e DENTISTA
-                        .requestMatchers("/dentistas/**").hasAnyRole("ADMIN", "DENTISTA")
+                        // Dentistas
+                        .requestMatchers("/dentistas/**")
+                        .hasAnyRole("ADMIN", "DENTISTA")
 
-                        // ✅ Consultas — ADMIN e DENTISTA
-                        .requestMatchers("/consultas/**").hasAnyRole("ADMIN", "DENTISTA")
+                        // Consultas
+                        .requestMatchers("/consultas/**")
+                        .hasAnyRole("ADMIN", "DENTISTA")
 
-                        // Qualquer outra rota → autenticado
+                        // Qualquer outra rota exige autenticação
                         .anyRequest().authenticated()
                 )
 
-                // Adiciona o filtro JWT antes do filtro padrão
-                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
+                // Filtro JWT
+                .addFilterBefore(
+                        jwtAuthFilter,
+                        UsernamePasswordAuthenticationFilter.class
+                )
 
                 .build();
     }

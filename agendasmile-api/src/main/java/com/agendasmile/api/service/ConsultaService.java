@@ -117,7 +117,7 @@ public class ConsultaService {
             throw new IllegalArgumentException("Consulta já está cancelada!");
 
         // Verifica se já foi realizada
-        if (consulta.getStatus() == StatusConsulta.REALIZADA)
+        if (consulta.getStatus() == StatusConsulta.FINALIZADA)
             throw new IllegalArgumentException("Consulta já realizada não pode ser cancelada!");
 
         consulta.setStatus(StatusConsulta.CANCELADA);
@@ -135,10 +135,10 @@ public class ConsultaService {
         if (consulta.getStatus() == StatusConsulta.CANCELADA)
             throw new IllegalArgumentException("Consulta cancelada não pode ser realizada!");
 
-        if (consulta.getStatus() == StatusConsulta.REALIZADA)
+        if (consulta.getStatus() == StatusConsulta.FINALIZADA)
             throw new IllegalArgumentException("Consulta já foi realizada!");
 
-        consulta.setStatus(StatusConsulta.REALIZADA);
+        consulta.setStatus(StatusConsulta.FINALIZADA);
         consultaRepository.save(consulta);
 
         return toResponse(consulta);
