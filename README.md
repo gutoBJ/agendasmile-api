@@ -206,9 +206,3 @@ Dentistas
 ## Autor
 
 **Augusto Chupernate**
-
-## Licença
-
-```md
-Este projeto foi desenvolvido para fins acadêmicos como parte do programa Wise Start.
-```
