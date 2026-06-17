@@ -55,11 +55,13 @@ PostgreSQL
 src/main/java
 ├── controller
 ├── service
+├── enums
+├── exception
 ├── repository
 ├── entity
 ├── dto
 ├── security
-└── config
+└── utils
 ```
 
 ## Configuração do Banco de Dados
@@ -75,7 +77,7 @@ CREATE DATABASE sistema_gestao_consultas;
 ```properties
 spring.datasource.url=jdbc:postgresql://localhost:5432/sistema_gestao_consultas
 spring.datasource.username=postgres
-spring.datasource.password=sua_senha
+spring.datasource.password=#bj_Post123
 ```
 
 ## Como Executar
@@ -89,7 +91,7 @@ spring.datasource.password=sua_senha
 ### Clonar o repositório
 
 ```bash
-git clone URL_DO_REPOSITORIO
+git clone https://github.com/gutoBJ/agendasmile-api.git
 ```
 
 ### Entrar na pasta do projeto
@@ -124,7 +126,7 @@ http://localhost:8080
 
 ```json
 {
-  "email": "admin@agendasmile.com",
+  "email": "admin@agendaSmile.com",
   "senha": "admin123"
 }
 ```
@@ -143,65 +145,45 @@ http://localhost:8080
 
 | Método | Endpoint |
 |---------|---------|
-| GET | /api/usuarios |
-| GET | /api/usuarios/{id} |
-| POST | /api/usuarios |
-| PUT | /api/usuarios/{id} |
-| DELETE | /api/usuarios/{id} |
+| GET | /usuarios |
+| GET | /usuarios/{id} |
+| POST | /usuarios |
+| PUT | /usuarios/{id} |
+| DELETE | /usuarios/{id} |
 
 ### Pacientes
 
 | Método | Endpoint |
 |---------|---------|
-| GET | /api/pacientes |
-| GET | /api/pacientes/{id} |
-| POST | /api/pacientes |
-| PUT | /api/pacientes/{id} |
+| GET | /pacientes |
+| GET | /pacientes/{id} |
+| POST | /pacientes |
+| PUT | /pacientes/{id} |
 
 ### Dentistas
 
 | Método | Endpoint |
 |---------|---------|
-| GET | /api/dentistas |
-| GET | /api/dentistas/{id} |
-| POST | /api/dentistas |
-| PUT | /api/dentistas/{id} |
+| GET | /dentistas |
+| GET | /dentistas/{id} |
+| POST | /dentistas |
+| PUT | /dentistas/{id} |
 
 ### Especialidades
 
 | Método | Endpoint |
 |---------|---------|
-| GET | /api/especialidades |
-| POST | /api/especialidades |
+| GET | /especialidades |
+| POST | /especialidades |
 
 ### Consultas
 
 | Método | Endpoint |
 |---------|---------|
-| GET | /api/consultas |
-| POST | /api/consultas |
-| PUT | /api/consultas/{id} |
-| PATCH | /api/consultas/{id}/cancelar |
-
-## Modelo Relacional
-
-```text
-Usuários
-    │
-    └── Consulta
-
-Pacientes
-    │
-    └── Consulta
-
-Dentistas
-    │
-    ├── Consulta
-    │
-    └── DentistaEspecialidade
-              │
-              └── Especialidade
-```
+| GET | /consultas |
+| POST | /consultas |
+| PUT | /consultas/{id} |
+| PATCH | /consultas/{id}/cancelar |
 
 ## Autor
 
